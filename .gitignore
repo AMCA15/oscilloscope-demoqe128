@@ -56,4 +56,7 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
+# Folders
+FLASH/
+
 # End of https://www.gitignore.io/api/c
