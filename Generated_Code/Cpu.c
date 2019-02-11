@@ -7,7 +7,7 @@
 **     Version     : Component 01.003, Driver 01.40, CPU db: 3.00.067
 **     Datasheet   : MC9S08QE128RM Rev. 2 6/2007
 **     Compiler    : CodeWarrior HCS08 C Compiler
-**     Date/Time   : 2019-02-08, 21:00, # CodeGen: 4
+**     Date/Time   : 2019-02-11, 16:14, # CodeGen: 15
 **     Abstract    :
 **         This component "MC9S08QE128_80" contains initialization 
 **         of the CPU and provides basic methods and events for 
@@ -17,6 +17,7 @@
 **     Contents    :
 **         EnableInt  - void Cpu_EnableInt(void);
 **         DisableInt - void Cpu_DisableInt(void);
+**         Delay100US - void Cpu_Delay100US(word us100);
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -132,6 +133,70 @@ void Cpu_EnableInt(void)
 
 /*
 ** ===================================================================
+**     Method      :  Cpu_Delay100US (component MC9S08QE128_80)
+**     Description :
+**         This method realizes software delay. The length of delay
+**         is at least 100 microsecond multiply input parameter
+**         [us100]. As the delay implementation is not based on real
+**         clock, the delay time may be increased by interrupt
+**         service routines processed during the delay. The method
+**         is independent on selected speed mode.
+**     Parameters  :
+**         NAME            - DESCRIPTION
+**         us100           - Number of 100 us delay repetitions.
+**     Returns     : Nothing
+** ===================================================================
+*/
+#pragma NO_ENTRY
+#pragma NO_EXIT
+#pragma MESSAGE DISABLE C5703
+void Cpu_Delay100US(word us100)
+{
+  /* Total irremovable overhead: 16 cycles */
+  /* ldhx: 5 cycles overhead (load parameter into register) */
+  /* jsr:  5 cycles overhead (jump to subroutine) */
+  /* rts:  6 cycles overhead (return from subroutine) */
+
+  /* aproximate irremovable overhead for each 100us cycle (counted) : 8 cycles */
+  /* aix:  2 cycles overhead  */
+  /* cphx: 3 cycles overhead  */
+  /* bne:  3 cycles overhead  */
+  /*lint -save  -e950 -e522 Disable MISRA rule (1.1,14.2) checking. */
+  asm {
+loop:
+    /* 100 us delay block begin */
+    /*
+     * Delay
+     *   - requested                  : 100 us @ 4.194304MHz,
+     *   - possible                   : 419 c, 99897.38 ns, delta -102.62 ns
+     *   - without removable overhead : 411 c, 97990.04 ns
+     */
+    pshh                               /* (2 c: 476.84 ns) backup H */
+    pshx                               /* (2 c: 476.84 ns) backup X */
+    ldhx #$0031                        /* (3 c: 715.26 ns) number of iterations */
+label0:
+    aix #-1                            /* (2 c: 476.84 ns) decrement H:X */
+    cphx #0                            /* (3 c: 715.26 ns) compare it to zero */
+    bne label0                         /* (3 c: 715.26 ns) repeat 49x */
+    pulx                               /* (3 c: 715.26 ns) restore X */
+    pulh                               /* (3 c: 715.26 ns) restore H */
+    nop                                /* (1 c: 238.42 ns) wait for 1 c */
+    nop                                /* (1 c: 238.42 ns) wait for 1 c */
+    nop                                /* (1 c: 238.42 ns) wait for 1 c */
+    nop                                /* (1 c: 238.42 ns) wait for 1 c */
+    nop                                /* (1 c: 238.42 ns) wait for 1 c */
+    nop                                /* (1 c: 238.42 ns) wait for 1 c */
+    /* 100 us delay block end */
+    aix #-1                            /* us100 parameter is passed via H:X registers */
+    cphx #0
+    bne loop                           /* next loop */
+    rts                                /* return from subroutine */
+  }
+  /*lint -restore Enable MISRA rule (1.1,14.2) checking. */
+}
+
+/*
+** ===================================================================
 **     Method      :  _EntryPoint (component MC9S08QE128_80)
 **
 **     Description :
@@ -233,8 +298,8 @@ void PE_low_level_init(void)
   setReg8(PTBDS, 0xFFU);                
   /* PTCDS: PTCDS7=1,PTCDS6=1,PTCDS5=1,PTCDS4=1,PTCDS3=1,PTCDS2=1,PTCDS1=1,PTCDS0=1 */
   setReg8(PTCDS, 0xFFU);                
-  /* PTDDS: PTDDS7=1,PTDDS6=1,PTDDS5=1,PTDDS4=1,PTDDS3=1,PTDDS2=1,PTDDS1=1,PTDDS0=1 */
-  setReg8(PTDDS, 0xFFU);                
+  /* PTDDS: PTDDS7=1,PTDDS6=1,PTDDS5=1,PTDDS4=1,PTDDS3=1,PTDDS2=1,PTDDS1=0,PTDDS0=1 */
+  setReg8(PTDDS, 0xFDU);                
   /* PTEDS: PTEDS7=1,PTEDS6=1,PTEDS5=1,PTEDS4=1,PTEDS3=1,PTEDS2=1,PTEDS1=1,PTEDS0=1 */
   setReg8(PTEDS, 0xFFU);                
   /* PTFDS: PTFDS7=1,PTFDS6=1,PTFDS5=1,PTFDS4=1,PTFDS3=1,PTFDS2=1,PTFDS1=1,PTFDS0=1 */

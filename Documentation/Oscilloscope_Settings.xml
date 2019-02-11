@@ -497,7 +497,7 @@ asm(BGND);
               <Slew_rate_control_for_PTD6 v="no" />
               <Slew_rate_control_for_PTD7 v="no" />
               <Drive_strength_for_PTD0 v="High" />
-              <Drive_strength_for_PTD1 v="High" />
+              <Drive_strength_for_PTD1 v="Low" />
               <Drive_strength_for_PTD2 v="High" />
               <Drive_strength_for_PTD3 v="High" />
               <Drive_strength_for_PTD4 v="High" />
@@ -689,7 +689,7 @@ asm(BGND);
         <ClearPartialPowerDownFlag v="don&amp;apos;t generate code" />
         <GetIdentification v="don&amp;apos;t generate code" />
         <SetBackdoorKey v="don&amp;apos;t generate code" />
-        <Delay100US v="don&amp;apos;t generate code" />
+        <Delay100US v="generate code" />
       </list>
     </Methods>
     <Events>
@@ -842,12 +842,7 @@ asm(BGND);
           <A_D_channel__pin_ v="PTA0_KBI1P0_TPM1CH0_ADP0_ACMP1PLUS" />
         </group>
       </list>
-      <A_D_resolution sel_value="12 bits">
-        
-Autoselect
-
-        <EmptySection_DummyValue />
-      </A_D_resolution>
+      <A_D_resolution v="12 bits" />
       <Conversion_time v="5.483627 &amp;#181;s" />
       <Low_power_mode v="Disabled" />
       <Sample_time v="short" />
@@ -870,8 +865,8 @@ Autoselect
       <Disable v="don&amp;apos;t generate code" />
       <EnableEvent v="don&amp;apos;t generate code" />
       <DisableEvent v="don&amp;apos;t generate code" />
-      <Start v="don&amp;apos;t generate code" />
-      <Stop v="don&amp;apos;t generate code" />
+      <Start v="generate code" />
+      <Stop v="generate code" />
       <Measure v="generate code" />
       <MeasureChan v="don&amp;apos;t generate code" />
       <EnableIntChanTrigger v="don&amp;apos;t generate code" />
@@ -993,7 +988,7 @@ Autoselect
         <Interrupt v="Vrtc" />
         <Interrupt_priority v="medium priority" />
       </boolgroup>
-      <Interrupt_period v="0.5 ms" />
+      <Interrupt_period v="100 ms" />
       <Same_period_in_modes v="yes" />
       <Component_uses_entire_timer v="no" />
       <group name="Initialization">

@@ -6,7 +6,7 @@
 **     Component   : ADC
 **     Version     : Component 01.690, Driver 01.30, CPU db: 3.00.067
 **     Compiler    : CodeWarrior HCS08 C Compiler
-**     Date/Time   : 2019-02-08, 20:59, # CodeGen: 3
+**     Date/Time   : 2019-02-11, 16:58, # CodeGen: 20
 **     Abstract    :
 **         This device "ADC" implements an A/D converter,
 **         its control methods and interrupt/event handling procedure.
@@ -21,7 +21,7 @@
 **            Channel0                                     : 
 **              A/D channel (pin)                          : PTA0_KBI1P0_TPM1CH0_ADP0_ACMP1PLUS
 **              A/D channel (pin) signal                   : 
-**          A/D resolution                                 : Autoselect
+**          A/D resolution                                 : 12 bits
 **          Conversion time                                : 5.483627 µs
 **          Low-power mode                                 : Disabled
 **          Sample time                                    : short
@@ -40,6 +40,8 @@
 **          Get value directly                             : yes
 **          Wait for result                                : yes
 **     Contents    :
+**         Start      - byte AD1_Start(void);
+**         Stop       - byte AD1_Stop(void);
 **         Measure    - byte AD1_Measure(bool WaitForResult);
 **         GetValue16 - byte AD1_GetValue16(word *Values);
 **
@@ -125,13 +127,21 @@ volatile word AD1_OutV;                /* Sum of measured values */
 */
 ISR(AD1_Interrupt)
 {
+  if (ModeFlg == STOP) {               /* If the driver is in STOP mode */
+    (void)ADCRL;                       /* Clear interrupt flag */
+    return;                            /* Return from interrupt */
+  }
   /*lint -save  -e926 -e927 -e928 -e929 Disable MISRA rule (11.4) checking. */
   ((TWREG volatile*)(&AD1_OutV))->b.high = ADCRH; /* Save measured value */
   ((TWREG volatile*)(&AD1_OutV))->b.low = ADCRL; /* Save measured value */
   /*lint -restore Enable MISRA rule (11.4) checking. */
   OutFlg = TRUE;                       /* Measured values are available */
   AD1_OnEnd();                         /* Invoke user event */
-  ModeFlg = STOP;                      /* Set the device to the stop mode */
+  if (ModeFlg == MEASURE) {            /* Is the device in the measure state? */
+    ModeFlg = STOP;                    /* Set the device to the stop mode */
+    return;                            /* Return from interrupt */
+  }
+  ADCSC1 = Channels;                   /* Restart measurement */
 }
 
 /*
@@ -151,6 +161,77 @@ void AD1_HWEnDi(void)
     OutFlg = FALSE;                    /* Output value isn't available */
     ADCSC1 = Channels;                 /* If yes then start the conversion */
   }
+}
+
+/*
+** ===================================================================
+**     Method      :  AD1_Start (component ADC)
+*/
+/*!
+**     @brief
+**         This method starts continuous conversion on all channels
+**         that are set in the component inspector. When each
+**         measurement on all channels has finished the [OnEnd ] event
+**         may be invoked. This method is not available if the
+**         [interrupt service] is disabled and the device doesn't
+**         support the continuous mode. Note: If time of measurement is
+**         too short and the instruction clock is too slow then the
+**         conversion complete interrupt and its handler may cause a
+**         system overflow.
+**     @return
+**                         - Error code, possible codes:
+**                           ERR_OK - OK
+**                           ERR_SPEED - This device does not work in
+**                           the active speed mode
+**                           ERR_DISABLED - Device is disabled
+**                           ERR_BUSY - A conversion is already running
+*/
+/* ===================================================================*/
+byte AD1_Start(void)
+{
+  if (ModeFlg != STOP) {               /* Is the device in running mode? */
+    return ERR_BUSY;                   /* If yes then error */
+  }
+  ModeFlg = CONTINUOUS;                /* Set state of device to the continuos mode */
+  AD1_HWEnDi();                        /* Enable the device */
+  return ERR_OK;                       /* OK */
+}
+
+/*
+** ===================================================================
+**     Method      :  AD1_Stop (component ADC)
+**     Description :
+**         This method stops the continuous measurement or disables
+**         a trigger mode (if supported by HW), which has been
+**         started by one of the following methods:
+**         Version specific information for Freescale HCS08 and HC08
+**         derivatives ] 
+**         - <Start> 
+**         - <EnableIntChanTrigger>
+**         - <EnableExtChanTrigger>
+**         The Stop method is available if one of the previously
+**         mentioned methods is supported by A/D converter device
+**         and is enabled to be generated.
+**     Parameters  : None
+**     Returns     :
+**         ---             - Error code, possible codes:
+**                           ERR_OK - OK
+**                           ERR_SPEED - This device does not work in
+**                           the active speed mode
+**                           ERR_BUSY - No continuous measurement is
+**                           running. Neither internal trigger nor
+**                           external trigger have been enabled (if
+**                           these are supported by HW).
+** ===================================================================
+*/
+byte AD1_Stop(void)
+{
+  if (ModeFlg != CONTINUOUS) {         /* Is the device in different mode than "continuous"? */
+    return ERR_BUSY;                   /* If yes then error */
+  }
+  ModeFlg = STOP;                      /* Set state of device to the stop mode */
+  ADCSC1 = 0x1FU;                      /* Abort the current conversion */
+  return ERR_OK;                       /* OK */
 }
 
 /*

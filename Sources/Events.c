@@ -50,6 +50,11 @@
 void AD1_OnEnd(void)
 {
   /* Write your code here ... */
+	char adc[2];
+	AD1_GetValue16(adc);
+	AS1_SendChar(adc[0]);
+	Cpu_Delay100US(1000);
+	AS1_SendChar(adc[1]);
 }
 
 
