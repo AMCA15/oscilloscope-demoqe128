@@ -6,7 +6,7 @@
 **     Component   : ADC
 **     Version     : Component 01.690, Driver 01.30, CPU db: 3.00.067
 **     Compiler    : CodeWarrior HCS08 C Compiler
-**     Date/Time   : 2019-02-13, 15:56, # CodeGen: 15
+**     Date/Time   : 2019-02-13, 17:44, # CodeGen: 29
 **     Abstract    :
 **         This device "ADC" implements an A/D converter,
 **         its control methods and interrupt/event handling procedure.
@@ -17,12 +17,15 @@
 **          Interrupt service/event                        : Enabled
 **            A/D interrupt                                : Vadc
 **            A/D interrupt priority                       : medium priority
-**          A/D channels                                   : 1
+**          A/D channels                                   : 2
 **            Channel0                                     : 
 **              A/D channel (pin)                          : PTA0_KBI1P0_TPM1CH0_ADP0_ACMP1PLUS
-**              A/D channel (pin) signal                   : 
+**              A/D channel (pin) signal                   : CHA
+**            Channel1                                     : 
+**              A/D channel (pin)                          : TempSensor
+**              A/D channel (pin) signal                   : CHB
 **          A/D resolution                                 : 12 bits
-**          Conversion time                                : 46 µs
+**          Conversion time                                : 3.655752 µs
 **          Low-power mode                                 : Disabled
 **          Sample time                                    : short
 **          Internal trigger                               : Enabled
@@ -40,10 +43,9 @@
 **          Get value directly                             : yes
 **          Wait for result                                : yes
 **     Contents    :
-**         Start      - byte AD1_Start(void);
-**         Stop       - byte AD1_Stop(void);
-**         Measure    - byte AD1_Measure(bool WaitForResult);
-**         GetValue16 - byte AD1_GetValue16(word *Values);
+**         Measure              - byte AD1_Measure(bool WaitForResult);
+**         EnableIntChanTrigger - byte AD1_EnableIntChanTrigger(byte Channel);
+**         GetValue16           - byte AD1_GetValue16(word *Values);
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -103,6 +105,9 @@
 
 
 
+/* Constants for channel selection */
+#define AD1_CHANNEL_CHA                 0
+#define AD1_CHANNEL_CHB                 1
 
 __interrupt void AD1_Interrupt(void);
 /*
@@ -129,61 +134,6 @@ void AD1_HWEnDi(void);
 ** ===================================================================
 */
 
-
-byte AD1_Start(void);
-/*
-** ===================================================================
-**     Method      :  AD1_Start (component ADC)
-*/
-/*!
-**     @brief
-**         This method starts continuous conversion on all channels
-**         that are set in the component inspector. When each
-**         measurement on all channels has finished the [OnEnd ] event
-**         may be invoked. This method is not available if the
-**         [interrupt service] is disabled and the device doesn't
-**         support the continuous mode. Note: If time of measurement is
-**         too short and the instruction clock is too slow then the
-**         conversion complete interrupt and its handler may cause a
-**         system overflow.
-**     @return
-**                         - Error code, possible codes:
-**                           ERR_OK - OK
-**                           ERR_SPEED - This device does not work in
-**                           the active speed mode
-**                           ERR_DISABLED - Device is disabled
-**                           ERR_BUSY - A conversion is already running
-*/
-/* ===================================================================*/
-
-byte AD1_Stop(void);
-/*
-** ===================================================================
-**     Method      :  AD1_Stop (component ADC)
-**     Description :
-**         This method stops the continuous measurement or disables
-**         a trigger mode (if supported by HW), which has been
-**         started by one of the following methods:
-**         Version specific information for Freescale HCS08 and HC08
-**         derivatives ] 
-**         - <Start> 
-**         - <EnableIntChanTrigger>
-**         - <EnableExtChanTrigger>
-**         The Stop method is available if one of the previously
-**         mentioned methods is supported by A/D converter device
-**         and is enabled to be generated.
-**     Parameters  : None
-**     Returns     :
-**         ---             - Error code, possible codes:
-**                           ERR_OK - OK
-**                           ERR_SPEED - This device does not work in
-**                           the active speed mode
-**                           ERR_BUSY - No continuous measurement is
-**                           running. Neither internal trigger nor
-**                           external trigger have been enabled (if
-**                           these are supported by HW).
-** ===================================================================
-*/
 
 byte AD1_Measure(bool WaitForResult);
 /*
@@ -249,6 +199,35 @@ byte AD1_GetValue16(word *Values);
 **                           (see generated code).
 */
 /* ===================================================================*/
+
+byte AD1_EnableIntChanTrigger(byte Channel);
+/*
+** ===================================================================
+**     Method      :  AD1_EnableIntChanTrigger (component ADC)
+**     Description :
+**         Enables the internal trigger mode. A conversion of one
+**         required channel will be launched by internal sync pulse. If
+**         the <Number of conversions> property is greater than 1, a
+**         conversion will be launched more than once (by an internal
+**         signal) according to <Number of conversions>. It's possible
+**         to disable the trigger mode by <Stop> method.
+**         [ Version specific information for other derivatives than
+**         Freescale HCS12 and HCS12X ] 
+**         This EnableIntChanTrigger method is available only when the
+**         <Internal trigger> property is enabled.
+**     Parameters  :
+**         NAME            - DESCRIPTION
+**         Channel         - Channel number which will be
+**                           measured at internal trigger control. If
+**                           only one channel in the component is set
+**                           then this parameter is ignored.
+**     Returns     :
+**         ---             - Error code, possible codes:
+**                           ERR_OK - OK
+**                           ERR_BUSY - A conversion is already running
+**                           ERR_RANGE - Parameter "Channel" out of range
+** ===================================================================
+*/
 
 void AD1_Init(void);
 /*

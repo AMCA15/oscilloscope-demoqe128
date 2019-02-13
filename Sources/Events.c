@@ -53,37 +53,12 @@ extern volatile char *BufferSerialCount;
 void AD1_OnEnd(void)
 {
   /* Write your code here ... */
-	//char adc[2];
-	//AD1_GetValue16(adc);
-	AD1_GetValue16(&CH_Analog[0]);
+	AD1_GetValue16(&CH_Analog[AD1_CHANNEL_CHA]);
 	if(AS1_GetCharsInTxBuf()==0){
 		AS1_SendBlock(&CH_Analog, 2, &BufferSerialCount);
 	}
-	//AS1_SendChar(adc[0]);
-	//Cpu_Delay100US(10);
-	//AS1_SendChar(adc[1]);
 }
 
-
-/*
-** ===================================================================
-**     Event       :  TI1_OnInterrupt (module Events)
-**
-**     Component   :  TI1 [TimerInt]
-**     Description :
-**         When a timer interrupt occurs this event is called (only
-**         when the component is enabled - <Enable> and the events are
-**         enabled - <EnableEvent>). This event is enabled only if a
-**         <interrupt service/event> is enabled.
-**     Parameters  : None
-**     Returns     : Nothing
-** ===================================================================
-*/
-void TI1_OnInterrupt(void)
-{
-  /* Write your code here ... */
-
-}
 
 /*
 ** ===================================================================
@@ -156,8 +131,6 @@ void  AS1_OnTxChar(void)
 void  AS1_OnFreeTxBuf(void)
 {
   /* Write your code here ... */
-	int x;
-	x =5;
 }
 
 /* END Events */
