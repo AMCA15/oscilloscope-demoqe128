@@ -32,6 +32,9 @@
 #include "Events.h"
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
+extern int CH_Analog[2];
+extern volatile char *BufferSerialCount;
+
 
 /*
 ** ===================================================================
@@ -50,11 +53,15 @@
 void AD1_OnEnd(void)
 {
   /* Write your code here ... */
-	char adc[2];
-	AD1_GetValue16(adc);
-	AS1_SendChar(adc[0]);
-	Cpu_Delay100US(10);
-	AS1_SendChar(adc[1]);
+	//char adc[2];
+	//AD1_GetValue16(adc);
+	AD1_GetValue16(&CH_Analog[0]);
+	if(AS1_GetCharsInTxBuf()==0){
+		AS1_SendBlock(&CH_Analog, 2, &BufferSerialCount);
+	}
+	//AS1_SendChar(adc[0]);
+	//Cpu_Delay100US(10);
+	//AS1_SendChar(adc[1]);
 }
 
 
@@ -76,6 +83,81 @@ void TI1_OnInterrupt(void)
 {
   /* Write your code here ... */
 
+}
+
+/*
+** ===================================================================
+**     Event       :  AS1_OnError (module Events)
+**
+**     Component   :  AS1 [AsynchroSerial]
+**     Description :
+**         This event is called when a channel error (not the error
+**         returned by a given method) occurs. The errors can be read
+**         using <GetError> method.
+**         The event is available only when the <Interrupt
+**         service/event> property is enabled.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+void  AS1_OnError(void)
+{
+  /* Write your code here ... */
+}
+
+/*
+** ===================================================================
+**     Event       :  AS1_OnRxChar (module Events)
+**
+**     Component   :  AS1 [AsynchroSerial]
+**     Description :
+**         This event is called after a correct character is received.
+**         The event is available only when the <Interrupt
+**         service/event> property is enabled and either the <Receiver>
+**         property is enabled or the <SCI output mode> property (if
+**         supported) is set to Single-wire mode.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+void  AS1_OnRxChar(void)
+{
+  /* Write your code here ... */
+}
+
+/*
+** ===================================================================
+**     Event       :  AS1_OnTxChar (module Events)
+**
+**     Component   :  AS1 [AsynchroSerial]
+**     Description :
+**         This event is called after a character is transmitted.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+void  AS1_OnTxChar(void)
+{
+  /* Write your code here ... */
+}
+
+/*
+** ===================================================================
+**     Event       :  AS1_OnFreeTxBuf (module Events)
+**
+**     Component   :  AS1 [AsynchroSerial]
+**     Description :
+**         This event is called after the last character in output
+**         buffer is transmitted.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+void  AS1_OnFreeTxBuf(void)
+{
+  /* Write your code here ... */
+	int x;
+	x =5;
 }
 
 /* END Events */

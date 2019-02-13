@@ -41,6 +41,9 @@
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
 
+int CH_Analog[2];
+volatile char *BufferSerialCount;
+
 void main(void)
 {
   /* Write your local variable definition here */
@@ -53,6 +56,7 @@ void main(void)
   /* For example: for(;;) { } */
   Cpu_EnableInt();
   AD1_Start();
+  
   
   /*** Don't write any code pass this line, or it will be deleted during code generation. ***/
   /*** RTOS startup code. Macro PEX_RTOS_START is defined by the RTOS component. DON'T MODIFY THIS CODE!!! ***/

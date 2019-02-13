@@ -6,7 +6,7 @@
 **     Component   : ADC
 **     Version     : Component 01.690, Driver 01.30, CPU db: 3.00.067
 **     Compiler    : CodeWarrior HCS08 C Compiler
-**     Date/Time   : 2019-02-13, 14:34, # CodeGen: 13
+**     Date/Time   : 2019-02-13, 15:56, # CodeGen: 15
 **     Abstract    :
 **         This device "ADC" implements an A/D converter,
 **         its control methods and interrupt/event handling procedure.
@@ -22,7 +22,7 @@
 **              A/D channel (pin)                          : PTA0_KBI1P0_TPM1CH0_ADP0_ACMP1PLUS
 **              A/D channel (pin) signal                   : 
 **          A/D resolution                                 : 12 bits
-**          Conversion time                                : 5.75 µs
+**          Conversion time                                : 46 µs
 **          Low-power mode                                 : Disabled
 **          Sample time                                    : short
 **          Internal trigger                               : Enabled
@@ -337,8 +337,8 @@ void AD1_Init(void)
   setReg8(ADCSC2, 0x00U);              /* Disable HW trigger and autocompare */ 
   OutFlg = FALSE;                      /* No measured value */
   ModeFlg = STOP;                      /* Device isn't running */
-  /* ADCCFG: ADLPC=0,ADIV1=0,ADIV0=0,ADLSMP=0,MODE1=0,MODE0=1,ADICLK1=1,ADICLK0=1 */
-  setReg8(ADCCFG, 0x07U);              /* Set prescaler bits */ 
+  /* ADCCFG: ADLPC=0,ADIV1=1,ADIV0=1,ADLSMP=0,MODE1=0,MODE0=1,ADICLK1=1,ADICLK0=1 */
+  setReg8(ADCCFG, 0x67U);              /* Set prescaler bits */ 
 }
 
 
