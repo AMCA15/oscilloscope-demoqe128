@@ -7,7 +7,7 @@
 **     Version     : Component 01.003, Driver 01.40, CPU db: 3.00.067
 **     Datasheet   : MC9S08QE128RM Rev. 2 6/2007
 **     Compiler    : CodeWarrior HCS08 C Compiler
-**     Date/Time   : 2019-02-11, 16:14, # CodeGen: 15
+**     Date/Time   : 2019-02-13, 14:04, # CodeGen: 8
 **     Abstract    :
 **         This component "MC9S08QE128_80" contains initialization 
 **         of the CPU and provides basic methods and events for 
@@ -167,25 +167,19 @@ loop:
     /* 100 us delay block begin */
     /*
      * Delay
-     *   - requested                  : 100 us @ 4.194304MHz,
-     *   - possible                   : 419 c, 99897.38 ns, delta -102.62 ns
-     *   - without removable overhead : 411 c, 97990.04 ns
+     *   - requested                  : 100 us @ 25.165824MHz,
+     *   - possible                   : 2517 c, 100016.59 ns, delta 16.59 ns
+     *   - without removable overhead : 2509 c, 99698.7 ns
      */
-    pshh                               /* (2 c: 476.84 ns) backup H */
-    pshx                               /* (2 c: 476.84 ns) backup X */
-    ldhx #$0031                        /* (3 c: 715.26 ns) number of iterations */
+    pshh                               /* (2 c: 79.47 ns) backup H */
+    pshx                               /* (2 c: 79.47 ns) backup X */
+    ldhx #$0138                        /* (3 c: 119.21 ns) number of iterations */
 label0:
-    aix #-1                            /* (2 c: 476.84 ns) decrement H:X */
-    cphx #0                            /* (3 c: 715.26 ns) compare it to zero */
-    bne label0                         /* (3 c: 715.26 ns) repeat 49x */
-    pulx                               /* (3 c: 715.26 ns) restore X */
-    pulh                               /* (3 c: 715.26 ns) restore H */
-    nop                                /* (1 c: 238.42 ns) wait for 1 c */
-    nop                                /* (1 c: 238.42 ns) wait for 1 c */
-    nop                                /* (1 c: 238.42 ns) wait for 1 c */
-    nop                                /* (1 c: 238.42 ns) wait for 1 c */
-    nop                                /* (1 c: 238.42 ns) wait for 1 c */
-    nop                                /* (1 c: 238.42 ns) wait for 1 c */
+    aix #-1                            /* (2 c: 79.47 ns) decrement H:X */
+    cphx #0                            /* (3 c: 119.21 ns) compare it to zero */
+    bne label0                         /* (3 c: 119.21 ns) repeat 312x */
+    pulx                               /* (3 c: 119.21 ns) restore X */
+    pulh                               /* (3 c: 119.21 ns) restore H */
     /* 100 us delay block end */
     aix #-1                            /* us100 parameter is passed via H:X registers */
     cphx #0
@@ -232,13 +226,13 @@ void _EntryPoint(void)
   /*lint -restore Enable MISRA rule (11.3) checking. */
   /* ICSC1: CLKS=0,RDIV=0,IREFS=1,IRCLKEN=1,IREFSTEN=0 */
   setReg8(ICSC1, 0x06U);               /* Initialization of the ICS control register 1 */ 
-  /* ICSC2: BDIV=1,RANGE=0,HGO=0,LP=0,EREFS=0,ERCLKEN=0,EREFSTEN=0 */
-  setReg8(ICSC2, 0x40U);               /* Initialization of the ICS control register 2 */ 
+  /* ICSC2: BDIV=0,RANGE=0,HGO=0,LP=0,EREFS=0,ERCLKEN=0,EREFSTEN=0 */
+  setReg8(ICSC2, 0x00U);               /* Initialization of the ICS control register 2 */ 
   while(ICSSC_IREFST == 0U) {          /* Wait until the source of reference clock is internal clock */
   }
-  /* ICSSC: DRST_DRS=0,DMX32=0 */
-  clrReg8Bits(ICSSC, 0xE0U);           /* Initialization of the ICS status and control */ 
-  while((ICSSC & 0xC0U) != 0x00U) {    /* Wait until the FLL switches to Low range DCO mode */
+  /* ICSSC: DRST_DRS=2,DMX32=0 */
+  clrSetReg8Bits(ICSSC, 0x60U, 0x80U); /* Initialization of the ICS status and control */ 
+  while((ICSSC & 0xC0U) != 0x80U) {    /* Wait until the FLL switches to High range DCO mode */
   }
 
   /*** End of PE initialization code after reset ***/

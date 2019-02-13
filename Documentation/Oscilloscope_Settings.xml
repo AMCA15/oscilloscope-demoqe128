@@ -651,7 +651,7 @@ asm(BGND);
           <boolgroup name="High speed mode" v="Enabled">
             <High_speed_clock v="Internal Clock" />
             <Bus_freq__divider v="Auto select" />
-            <Internal_bus_clock v="4.194304000000" />
+            <Internal_bus_clock v="25.165824000000" />
             <Fixed_frequency_clock__MHz_ v="0.016384" />
             <enumgroup name="FLL mode" v="Engaged">
               <enumgroup name="Ref. clock source" v="Internal Clock">
@@ -660,7 +660,7 @@ asm(BGND);
               <enumgroup name="DCO mode" v="Auto select">
                 <EmptySection_DummyValue />
               </enumgroup>
-              <FLL_output_clock_freq___MHz_ v="16.777216000000" />
+              <FLL_output_clock_freq___MHz_ v="50.331648000000" />
             </enumgroup>
           </boolgroup>
           <boolgroup name="Low speed mode" v="Disabled" />
@@ -843,7 +843,7 @@ asm(BGND);
         </group>
       </list>
       <A_D_resolution v="12 bits" />
-      <Conversion_time v="5.483627 &amp;#181;s" />
+      <Conversion_time v="5.75 &amp;#181;s" />
       <Low_power_mode v="Disabled" />
       <Sample_time v="short" />
       <boolgroup name="Internal trigger" v="Enabled">
@@ -910,7 +910,7 @@ asm(BGND);
         <boolgroup name="Transmitter" v="Enabled">
           <TxD v="PTB1_KBI1P5_TxD1_ADP5" />
         </boolgroup>
-        <Baud_rate v="9600 baud" />
+        <Baud_rate v="115200 baud" />
         <Break_signal v="Disabled" />
         <Wakeup_condition v="Idle line wakeup" />
         <Transmitter_output v="Not inverted" />

@@ -53,7 +53,7 @@ void AD1_OnEnd(void)
 	char adc[2];
 	AD1_GetValue16(adc);
 	AS1_SendChar(adc[0]);
-	Cpu_Delay100US(1000);
+	Cpu_Delay100US(10);
 	AS1_SendChar(adc[1]);
 }
 
