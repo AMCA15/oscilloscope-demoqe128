@@ -6,7 +6,7 @@
 **     Component   : ADC
 **     Version     : Component 01.690, Driver 01.30, CPU db: 3.00.067
 **     Compiler    : CodeWarrior HCS08 C Compiler
-**     Date/Time   : 2019-02-13, 17:44, # CodeGen: 29
+**     Date/Time   : 2019-02-16, 22:23, # CodeGen: 37
 **     Abstract    :
 **         This device "ADC" implements an A/D converter,
 **         its control methods and interrupt/event handling procedure.
@@ -25,11 +25,10 @@
 **              A/D channel (pin)                          : TempSensor
 **              A/D channel (pin) signal                   : CHB
 **          A/D resolution                                 : 12 bits
-**          Conversion time                                : 3.655752 µs
+**          Conversion time                                : 46 µs
 **          Low-power mode                                 : Disabled
 **          Sample time                                    : short
-**          Internal trigger                               : Enabled
-**            Internal trigger source                      : RTC
+**          Internal trigger                               : Disabled
 **          Number of conversions                          : 1
 **          Initialization                                 : 
 **            Enabled in init. code                        : yes
@@ -43,9 +42,8 @@
 **          Get value directly                             : yes
 **          Wait for result                                : yes
 **     Contents    :
-**         Measure              - byte AD1_Measure(bool WaitForResult);
-**         EnableIntChanTrigger - byte AD1_EnableIntChanTrigger(byte Channel);
-**         GetValue16           - byte AD1_GetValue16(word *Values);
+**         Measure    - byte AD1_Measure(bool WaitForResult);
+**         GetValue16 - byte AD1_GetValue16(word *Values);
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -199,35 +197,6 @@ byte AD1_GetValue16(word *Values);
 **                           (see generated code).
 */
 /* ===================================================================*/
-
-byte AD1_EnableIntChanTrigger(byte Channel);
-/*
-** ===================================================================
-**     Method      :  AD1_EnableIntChanTrigger (component ADC)
-**     Description :
-**         Enables the internal trigger mode. A conversion of one
-**         required channel will be launched by internal sync pulse. If
-**         the <Number of conversions> property is greater than 1, a
-**         conversion will be launched more than once (by an internal
-**         signal) according to <Number of conversions>. It's possible
-**         to disable the trigger mode by <Stop> method.
-**         [ Version specific information for other derivatives than
-**         Freescale HCS12 and HCS12X ] 
-**         This EnableIntChanTrigger method is available only when the
-**         <Internal trigger> property is enabled.
-**     Parameters  :
-**         NAME            - DESCRIPTION
-**         Channel         - Channel number which will be
-**                           measured at internal trigger control. If
-**                           only one channel in the component is set
-**                           then this parameter is ignored.
-**     Returns     :
-**         ---             - Error code, possible codes:
-**                           ERR_OK - OK
-**                           ERR_BUSY - A conversion is already running
-**                           ERR_RANGE - Parameter "Channel" out of range
-** ===================================================================
-*/
 
 void AD1_Init(void);
 /*

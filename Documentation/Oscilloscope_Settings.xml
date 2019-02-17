@@ -846,12 +846,10 @@ asm(BGND);
         </group>
       </list>
       <A_D_resolution v="12 bits" />
-      <Conversion_time v="3.655752 &amp;#181;s" />
+      <Conversion_time v="46 &amp;#181;s" />
       <Low_power_mode v="Disabled" />
       <Sample_time v="short" />
-      <boolgroup name="Internal trigger" v="Enabled">
-        <Internal_trigger_source v="RTC" />
-      </boolgroup>
+      <boolgroup name="Internal trigger" v="Disabled" />
       <Number_of_conversions v="1" />
       <group name="Initialization">
         <Enabled_in_init__code v="yes" />
@@ -872,7 +870,7 @@ asm(BGND);
       <Stop v="don&amp;apos;t generate code" />
       <Measure v="generate code" />
       <MeasureChan v="don&amp;apos;t generate code" />
-      <EnableIntChanTrigger v="generate code" />
+      <EnableIntChanTrigger v="don&amp;apos;t generate code" />
       <GetValue v="don&amp;apos;t generate code" />
       <GetChanValue v="don&amp;apos;t generate code" />
       <GetValue8 v="don&amp;apos;t generate code" />
@@ -1042,6 +1040,55 @@ asm(BGND);
       <event name="BeforeNewSpeed" v="don&amp;apos;t generate code" />
       <event name="AfterNewSpeed" v="don&amp;apos;t generate code" />
       <event name="OnInterrupt" v="don&amp;apos;t generate code" />
+    </Events>
+  </Bean>
+  <Bean name="TI1" type="TimerInt">
+    <Enabled v="Y" />
+    <Properties>
+      <Component_name v="TI1" />
+      <Periodic_interrupt_source v="TPM10" />
+      <Counter v="TPM1" />
+      <boolgroup name="Interrupt service/event" v="Enabled">
+        <Interrupt v="Vtpm1ch0" />
+        <Interrupt_priority v="medium priority" />
+      </boolgroup>
+      <Interrupt_period v="500 &amp;#181;s" />
+      <Same_period_in_modes v="yes" />
+      <Component_uses_entire_timer v="no" />
+      <group name="Initialization">
+        <Enabled_in_init__code v="yes" />
+        <Events_enabled_in_init_ v="yes" />
+      </group>
+      <group name="CPU clock/speed selection">
+        <High_speed_mode v="This component enabled" />
+        <Low_speed_mode v="This component disabled" />
+        <Slow_speed_mode v="This component disabled" />
+      </group>
+    </Properties>
+    <Methods>
+      <Enable v="don&amp;apos;t generate code" />
+      <Disable v="don&amp;apos;t generate code" />
+      <EnableEvent v="don&amp;apos;t generate code" />
+      <DisableEvent v="don&amp;apos;t generate code" />
+      <SetPeriodMode v="don&amp;apos;t generate code" />
+      <SetPeriodTicks16 v="don&amp;apos;t generate code" />
+      <SetPeriodTicks32 v="don&amp;apos;t generate code" />
+      <SetPeriodUS v="don&amp;apos;t generate code" />
+      <SetPeriodMS v="don&amp;apos;t generate code" />
+      <SetPeriodSec v="don&amp;apos;t generate code" />
+      <SetPeriodReal v="don&amp;apos;t generate code" />
+      <SetFreqHz v="don&amp;apos;t generate code" />
+      <SetFreqkHz v="don&amp;apos;t generate code" />
+      <SetFreqMHz v="don&amp;apos;t generate code" />
+    </Methods>
+    <Events>
+      <Event_module_name v="Events" />
+      <event name="BeforeNewSpeed" v="don&amp;apos;t generate code" />
+      <event name="AfterNewSpeed" v="don&amp;apos;t generate code" />
+      <event name="OnInterrupt" v="generate code">
+        <Event_procedure_name v="TI1_OnInterrupt" />
+        <Priority v="same as interrupt" />
+      </event>
     </Events>
   </Bean>
 </PE_PROJECT_SETTINGS_DOCUMENTATION>

@@ -7,7 +7,7 @@
 **     Version     : Component 01.003, Driver 01.40, CPU db: 3.00.067
 **     Datasheet   : MC9S08QE128RM Rev. 2 6/2007
 **     Compiler    : CodeWarrior HCS08 C Compiler
-**     Date/Time   : 2019-02-13, 16:36, # CodeGen: 17
+**     Date/Time   : 2019-02-16, 21:33, # CodeGen: 34
 **     Abstract    :
 **         This component "MC9S08QE128_80" contains initialization 
 **         of the CPU and provides basic methods and events for 
@@ -70,6 +70,7 @@
 #include "AD1.h"
 #include "AS1.h"
 #include "FC1.h"
+#include "TI1.h"
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
@@ -311,6 +312,8 @@ void PE_low_level_init(void)
   AS1_Init();
   /* ### FreeCntr "FC1" init code ... */
   FC1_Init();
+  /* ### TimerInt "TI1" init code ... */
+  TI1_Init();
   CCR_lock = (byte)0;
   __EI();                              /* Enable interrupts */
 }
