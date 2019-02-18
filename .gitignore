@@ -56,7 +56,12 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
-# Folders
+# Custom Folders
 FLASH/
+
+# Custom Files
+Oscilloscope_FLASH_PnE U-MultiLink.traceConfig
+SaAnalysispointsManager.apconfig
+
 
 # End of https://www.gitignore.io/api/c
