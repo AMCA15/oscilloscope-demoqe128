@@ -6,7 +6,7 @@
 **     Component   : ADC
 **     Version     : Component 01.690, Driver 01.30, CPU db: 3.00.067
 **     Compiler    : CodeWarrior HCS08 C Compiler
-**     Date/Time   : 2019-02-16, 22:23, # CodeGen: 37
+**     Date/Time   : 2019-02-18, 15:40, # CodeGen: 48
 **     Abstract    :
 **         This device "ADC" implements an A/D converter,
 **         its control methods and interrupt/event handling procedure.
@@ -25,7 +25,7 @@
 **              A/D channel (pin)                          : TempSensor
 **              A/D channel (pin) signal                   : CHB
 **          A/D resolution                                 : 12 bits
-**          Conversion time                                : 46 µs
+**          Conversion time                                : 11.5 µs
 **          Low-power mode                                 : Disabled
 **          Sample time                                    : short
 **          Internal trigger                               : Disabled
@@ -42,8 +42,8 @@
 **          Get value directly                             : yes
 **          Wait for result                                : yes
 **     Contents    :
-**         Measure    - byte AD1_Measure(bool WaitForResult);
-**         GetValue16 - byte AD1_GetValue16(word *Values);
+**         Measure  - byte AD1_Measure(bool WaitForResult);
+**         GetValue - byte AD1_GetValue(void* Values);
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -168,21 +168,23 @@ byte AD1_Measure(bool WaitForResult);
 */
 /* ===================================================================*/
 
-byte AD1_GetValue16(word *Values);
+byte AD1_GetValue(void *Values);
 /*
 ** ===================================================================
-**     Method      :  AD1_GetValue16 (component ADC)
+**     Method      :  AD1_GetValue (component ADC)
 */
 /*!
 **     @brief
-**         This method returns the last measured values of all channels.
-**         Compared with [GetValue] method this method returns more
-**         accurate result if the [number of conversions] is greater
-**         than 1 and [AD resolution] is less than 16 bits. In addition,
-**         the user code dependency on [AD resolution] is eliminated.
+**         Returns the last measured values for all channels. Format
+**         and width of the value is a native format of the A/D
+**         converter.
 **     @param
 **         Values          - Pointer to the array that contains
-**                           the measured data.
+**                           the measured data. Data type is a byte, a
+**                           word or an int. It depends on the supported
+**                           modes, resolution, etc. of the AD converter.
+**                           See the Version specific information for
+**                           the current CPU in [General Info].
 **     @return
 **                         - Error code, possible codes:
 **                           ERR_OK - OK

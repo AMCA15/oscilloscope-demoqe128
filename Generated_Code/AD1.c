@@ -6,7 +6,7 @@
 **     Component   : ADC
 **     Version     : Component 01.690, Driver 01.30, CPU db: 3.00.067
 **     Compiler    : CodeWarrior HCS08 C Compiler
-**     Date/Time   : 2019-02-16, 22:23, # CodeGen: 37
+**     Date/Time   : 2019-02-18, 15:40, # CodeGen: 48
 **     Abstract    :
 **         This device "ADC" implements an A/D converter,
 **         its control methods and interrupt/event handling procedure.
@@ -25,7 +25,7 @@
 **              A/D channel (pin)                          : TempSensor
 **              A/D channel (pin) signal                   : CHB
 **          A/D resolution                                 : 12 bits
-**          Conversion time                                : 46 µs
+**          Conversion time                                : 11.5 µs
 **          Low-power mode                                 : Disabled
 **          Sample time                                    : short
 **          Internal trigger                               : Disabled
@@ -42,8 +42,8 @@
 **          Get value directly                             : yes
 **          Wait for result                                : yes
 **     Contents    :
-**         Measure    - byte AD1_Measure(bool WaitForResult);
-**         GetValue16 - byte AD1_GetValue16(word *Values);
+**         Measure  - byte AD1_Measure(bool WaitForResult);
+**         GetValue - byte AD1_GetValue(void* Values);
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -238,18 +238,20 @@ byte AD1_Measure(bool WaitForResult)
 
 /*
 ** ===================================================================
-**     Method      :  AD1_GetValue16 (component ADC)
+**     Method      :  AD1_GetValue (component ADC)
 */
 /*!
 **     @brief
-**         This method returns the last measured values of all channels.
-**         Compared with [GetValue] method this method returns more
-**         accurate result if the [number of conversions] is greater
-**         than 1 and [AD resolution] is less than 16 bits. In addition,
-**         the user code dependency on [AD resolution] is eliminated.
+**         Returns the last measured values for all channels. Format
+**         and width of the value is a native format of the A/D
+**         converter.
 **     @param
 **         Values          - Pointer to the array that contains
-**                           the measured data.
+**                           the measured data. Data type is a byte, a
+**                           word or an int. It depends on the supported
+**                           modes, resolution, etc. of the AD converter.
+**                           See the Version specific information for
+**                           the current CPU in [General Info].
 **     @return
 **                         - Error code, possible codes:
 **                           ERR_OK - OK
@@ -264,13 +266,13 @@ byte AD1_Measure(bool WaitForResult)
 **                           (see generated code).
 */
 /* ===================================================================*/
-byte AD1_GetValue16(word *Values)
+byte AD1_GetValue(void *Values)
 {
   if (OutFlg == 0U) {                  /* Is output flag set? */
     return ERR_NOTAVAIL;               /* If no then error */
   }
-  Values[0] = (word)((AD1_OutV[0]) << 4); /* Save measured values to the output buffer */
-  Values[1] = (word)((AD1_OutV[1]) << 4); /* Save measured values to the output buffer */
+  ((word*)Values)[0] = AD1_OutV[0];    /* Save measured values to the output buffer */
+  ((word*)Values)[1] = AD1_OutV[1];    /* Save measured values to the output buffer */
   return ERR_OK;                       /* OK */
 }
 
@@ -293,8 +295,8 @@ void AD1_Init(void)
   setReg8(ADCSC2, 0x00U);              /* Disable HW trigger and autocompare */ 
   OutFlg = FALSE;                      /* No measured value */
   ModeFlg = STOP;                      /* Device isn't running */
-  /* ADCCFG: ADLPC=0,ADIV1=1,ADIV0=1,ADLSMP=0,MODE1=0,MODE0=1,ADICLK1=1,ADICLK0=1 */
-  setReg8(ADCCFG, 0x67U);              /* Set prescaler bits */ 
+  /* ADCCFG: ADLPC=0,ADIV1=0,ADIV0=1,ADLSMP=0,MODE1=0,MODE0=1,ADICLK1=1,ADICLK0=1 */
+  setReg8(ADCCFG, 0x27U);              /* Set prescaler bits */ 
 }
 
 

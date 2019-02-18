@@ -32,7 +32,6 @@
 #include "Events.h"
 #include "AD1.h"
 #include "AS1.h"
-#include "FC1.h"
 #include "TI1.h"
 /* Include shared modules, which are used for whole project */
 #include "PE_Types.h"
@@ -60,7 +59,8 @@ void main(void)
   
   for(;;){
 	if((AS1_GetCharsInTxBuf() == 0) && (is_CH_Full == 1)){
-		AS1_SendBlock(&CH_Analog, 2, &BufferSerialCount);
+		AS1_SendBlock(&CH_Analog, 4, &BufferSerialCount);
+		is_CH_Full = 0;
 	}
   }
   

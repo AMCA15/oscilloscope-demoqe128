@@ -54,10 +54,10 @@ extern volatile char *BufferSerialCount;
 void AD1_OnEnd(void)
 {
   /* Write your code here ... */
-	int *Values;
-	AD1_GetValue16(Values);
-	CH_Analog[AD1_CHANNEL_CHA] = Values[AD1_CHANNEL_CHA];
-	CH_Analog[AD1_CHANNEL_CHB] = Values[AD1_CHANNEL_CHB];
+	int Values[2];
+	AD1_GetValue(Values);
+	CH_Analog[AD1_CHANNEL_CHA] = Values[0];
+	CH_Analog[AD1_CHANNEL_CHB] = Values[1];
 	is_CH_Full = 1;
 }
 
