@@ -33,6 +33,7 @@
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
 extern int CH_Analog[2];
+extern volatile char is_CH_Full;
 extern volatile char *BufferSerialCount;
 
 
@@ -53,10 +54,11 @@ extern volatile char *BufferSerialCount;
 void AD1_OnEnd(void)
 {
   /* Write your code here ... */
-	AD1_GetValue16(&CH_Analog[AD1_CHANNEL_CHA]);
-	if(AS1_GetCharsInTxBuf()==0){
-		AS1_SendBlock(&CH_Analog, 2, &BufferSerialCount);
-	}
+	int Values[2];
+	AD1_GetValue(Values);
+	CH_Analog[AD1_CHANNEL_CHA] = Values[0];
+	CH_Analog[AD1_CHANNEL_CHB] = Values[1];
+	is_CH_Full = 1;
 }
 
 
@@ -131,6 +133,27 @@ void  AS1_OnTxChar(void)
 void  AS1_OnFreeTxBuf(void)
 {
   /* Write your code here ... */
+}
+
+/*
+** ===================================================================
+**     Event       :  TI1_OnInterrupt (module Events)
+**
+**     Component   :  TI1 [TimerInt]
+**     Description :
+**         When a timer interrupt occurs this event is called (only
+**         when the component is enabled - <Enable> and the events are
+**         enabled - <EnableEvent>). This event is enabled only if a
+**         <interrupt service/event> is enabled.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+void TI1_OnInterrupt(void)
+{
+  /* Write your code here ... */
+	AD1_Measure(0);
+
 }
 
 /* END Events */

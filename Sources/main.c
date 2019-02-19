@@ -32,7 +32,7 @@
 #include "Events.h"
 #include "AD1.h"
 #include "AS1.h"
-#include "FC1.h"
+#include "TI1.h"
 /* Include shared modules, which are used for whole project */
 #include "PE_Types.h"
 #include "PE_Error.h"
@@ -42,6 +42,7 @@
 /* User includes (#include below this line is not maintained by Processor Expert) */
 
 int CH_Analog[2];
+volatile char is_CH_Full;
 volatile char *BufferSerialCount;
 
 void main(void)
@@ -55,11 +56,11 @@ void main(void)
   /* Write your code here */
   /* For example: for(;;) { } */
   Cpu_EnableInt();
-  AD1_EnableIntChanTrigger(0);
   
   for(;;){
-	if(AS1_GetCharsInTxBuf()==0){
-		AS1_SendBlock(&CH_Analog, 2, &BufferSerialCount);
+	if((AS1_GetCharsInTxBuf() == 0) && (is_CH_Full == 1)){
+		AS1_SendBlock(&CH_Analog, 4, &BufferSerialCount);
+		is_CH_Full = 0;
 	}
   }
   

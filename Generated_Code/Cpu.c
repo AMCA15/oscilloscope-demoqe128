@@ -7,7 +7,7 @@
 **     Version     : Component 01.003, Driver 01.40, CPU db: 3.00.067
 **     Datasheet   : MC9S08QE128RM Rev. 2 6/2007
 **     Compiler    : CodeWarrior HCS08 C Compiler
-**     Date/Time   : 2019-02-13, 16:36, # CodeGen: 17
+**     Date/Time   : 2019-02-18, 15:56, # CodeGen: 49
 **     Abstract    :
 **         This component "MC9S08QE128_80" contains initialization 
 **         of the CPU and provides basic methods and events for 
@@ -69,7 +69,7 @@
 
 #include "AD1.h"
 #include "AS1.h"
-#include "FC1.h"
+#include "TI1.h"
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
@@ -167,19 +167,22 @@ loop:
     /* 100 us delay block begin */
     /*
      * Delay
-     *   - requested                  : 100 us @ 25.165824MHz,
-     *   - possible                   : 2517 c, 100016.59 ns, delta 16.59 ns
-     *   - without removable overhead : 2509 c, 99698.7 ns
+     *   - requested                  : 100 us @ 19.922944MHz,
+     *   - possible                   : 1992 c, 99985.22 ns, delta -14.78 ns
+     *   - without removable overhead : 1984 c, 99583.68 ns
      */
-    pshh                               /* (2 c: 79.47 ns) backup H */
-    pshx                               /* (2 c: 79.47 ns) backup X */
-    ldhx #$0138                        /* (3 c: 119.21 ns) number of iterations */
+    pshh                               /* (2 c: 100.39 ns) backup H */
+    pshx                               /* (2 c: 100.39 ns) backup X */
+    ldhx #$00F6                        /* (3 c: 150.58 ns) number of iterations */
 label0:
-    aix #-1                            /* (2 c: 79.47 ns) decrement H:X */
-    cphx #0                            /* (3 c: 119.21 ns) compare it to zero */
-    bne label0                         /* (3 c: 119.21 ns) repeat 312x */
-    pulx                               /* (3 c: 119.21 ns) restore X */
-    pulh                               /* (3 c: 119.21 ns) restore H */
+    aix #-1                            /* (2 c: 100.39 ns) decrement H:X */
+    cphx #0                            /* (3 c: 150.58 ns) compare it to zero */
+    bne label0                         /* (3 c: 150.58 ns) repeat 246x */
+    pulx                               /* (3 c: 150.58 ns) restore X */
+    pulh                               /* (3 c: 150.58 ns) restore H */
+    nop                                /* (1 c: 50.19 ns) wait for 1 c */
+    nop                                /* (1 c: 50.19 ns) wait for 1 c */
+    nop                                /* (1 c: 50.19 ns) wait for 1 c */
     /* 100 us delay block end */
     aix #-1                            /* us100 parameter is passed via H:X registers */
     cphx #0
@@ -230,9 +233,9 @@ void _EntryPoint(void)
   setReg8(ICSC2, 0x00U);               /* Initialization of the ICS control register 2 */ 
   while(ICSSC_IREFST == 0U) {          /* Wait until the source of reference clock is internal clock */
   }
-  /* ICSSC: DRST_DRS=2,DMX32=0 */
-  clrSetReg8Bits(ICSSC, 0x60U, 0x80U); /* Initialization of the ICS status and control */ 
-  while((ICSSC & 0xC0U) != 0x80U) {    /* Wait until the FLL switches to High range DCO mode */
+  /* ICSSC: DRST_DRS=1,DMX32=1 */
+  clrSetReg8Bits(ICSSC, 0x80U, 0x60U); /* Initialization of the ICS status and control */ 
+  while((ICSSC & 0xC0U) != 0x40U) {    /* Wait until the FLL switches to Mid range DCO mode */
   }
 
   /*** End of PE initialization code after reset ***/
@@ -309,8 +312,8 @@ void PE_low_level_init(void)
   AD1_Init();
   /* ### Asynchro serial "AS1" init code ... */
   AS1_Init();
-  /* ### FreeCntr "FC1" init code ... */
-  FC1_Init();
+  /* ### TimerInt "TI1" init code ... */
+  TI1_Init();
   CCR_lock = (byte)0;
   __EI();                              /* Enable interrupts */
 }
