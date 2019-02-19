@@ -1,7 +1,7 @@
 <GenerationInfo_G_C>
   <Options>
     <ProjectName>Oscilloscope</ProjectName>
-    <ProjectDirectory>C:\Users\user.LC\Desktop\tmp\oscilloscope-demoqe128\</ProjectDirectory>
+    <ProjectDirectory>C:\msys64\home\Anderson\workspace\Oscilloscope\</ProjectDirectory>
     <ProjectMainModuleName>main</ProjectMainModuleName>
     <DestEventsDirectory>Sources\</DestEventsDirectory>
     <DestDriversSubDirectory>..\Generated_Code\</DestDriversSubDirectory>
@@ -18,23 +18,23 @@
         <Line>PE_Const</Line>
         <Line>IO_Map</Line>
       </GenSharedModules>
-      <ShrdHeaderAge0>1314024892</ShrdHeaderAge0>
+      <ShrdHeaderAge0>1313381257</ShrdHeaderAge0>
       <ShrdCodeAge0>-1</ShrdCodeAge0>
       <ShrdAsemblAge0>-1</ShrdAsemblAge0>
-      <ShrdHeaderAge1>1314024892</ShrdHeaderAge1>
+      <ShrdHeaderAge1>1313381257</ShrdHeaderAge1>
       <ShrdCodeAge1>-1</ShrdCodeAge1>
       <ShrdAsemblAge1>-1</ShrdAsemblAge1>
-      <ShrdHeaderAge2>1314024892</ShrdHeaderAge2>
+      <ShrdHeaderAge2>1313381257</ShrdHeaderAge2>
       <ShrdCodeAge2>-1</ShrdCodeAge2>
       <ShrdAsemblAge2>-1</ShrdAsemblAge2>
-      <ShrdHeaderAge3>1314024892</ShrdHeaderAge3>
-      <ShrdCodeAge3>1314024892</ShrdCodeAge3>
+      <ShrdHeaderAge3>1313381257</ShrdHeaderAge3>
+      <ShrdCodeAge3>1313381257</ShrdCodeAge3>
       <ShrdAsemblAge3>-1</ShrdAsemblAge3>
       <GenExtraFiles lines_count="2">
         <Line>Project_Settings\Linker_Files\ProcessorExpert.prm</Line>
         <Line>Generated_Code\Vectors.c</Line>
       </GenExtraFiles>
-      <XtraAge1>1314025763</XtraAge1>
+      <XtraAge1>1314038301</XtraAge1>
       <GenExtraFileType1>4</GenExtraFileType1>
       <GenLinkedFiles lines_count="0" />
       <GenEventModules lines_count="1">
@@ -68,7 +68,7 @@
     </GenFiles>
     <SignalListFile>Documentation\Oscilloscope_SIGNALS.txt</SignalListFile>
     <DestinationCompiler>MetrowerksHCS08CC</DestinationCompiler>
-    <ProjectModificationStamp>67</ProjectModificationStamp>
+    <ProjectModificationStamp>68</ProjectModificationStamp>
   </Options>
   <CpuID_2>
     <Generated>false</Generated>
@@ -124,8 +124,8 @@
     <GenComponentVersion>01.003</GenComponentVersion>
     <GenDriverVersion>01.40</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
-    <HeaderAge>1314029326</HeaderAge>
-    <CodeAge>1314029326</CodeAge>
+    <HeaderAge>1314038301</HeaderAge>
+    <CodeAge>1314038301</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>20</GenNumMethods>
     <SetHighSpeed>false</SetHighSpeed>
@@ -177,8 +177,8 @@
     <GenComponentVersion>01.690</GenComponentVersion>
     <GenDriverVersion>01.30</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
-    <HeaderAge>1314028816</HeaderAge>
-    <CodeAge>1314028816</CodeAge>
+    <HeaderAge>1314038301</HeaderAge>
+    <CodeAge>1314038301</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>19</GenNumMethods>
     <Enable>false</Enable>
@@ -306,8 +306,8 @@
     <GenComponentVersion>02.611</GenComponentVersion>
     <GenDriverVersion>01.33</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
-    <HeaderAge>1314028816</HeaderAge>
-    <CodeAge>1314029326</CodeAge>
+    <HeaderAge>1314038301</HeaderAge>
+    <CodeAge>1314038301</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>30</GenNumMethods>
     <Enable>false</Enable>
@@ -536,8 +536,8 @@
     <GenComponentVersion>02.161</GenComponentVersion>
     <GenDriverVersion>01.23</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
-    <HeaderAge>1314029986</HeaderAge>
-    <CodeAge>1314029986</CodeAge>
+    <HeaderAge>1314038301</HeaderAge>
+    <CodeAge>1314038301</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>14</GenNumMethods>
     <Enable>false</Enable>
@@ -688,7 +688,7 @@
     <SrcFile79>Drivers\HCS08\MC9S08_SharedInterruptVectors.prg=1116866294</SrcFile79>
     <SrcFile80>Drivers\Common\CommonRegInit.prg=1116866294</SrcFile80>
     <SrcFile81>Drivers\Common\AsynchroSerialClearTxBuf.inc=1116866294</SrcFile81>
-    <SrcFile82>Drivers\Common\Header.doxy=1119170811</SrcFile82>
+    <SrcFile82>Drivers\Common\Header.doxy=1119169723</SrcFile82>
     <SrcFile83>Drivers\HCS08\TimerSubroutines_PeriodicInt.prg=1116866294</SrcFile83>
     <SrcFile84>Drivers\Common\PE_TypesAbstract.inc=1116866294</SrcFile84>
     <SrcFile85>Drivers\Common\AsynchroSerialOnError.inc=1116866294</SrcFile85>

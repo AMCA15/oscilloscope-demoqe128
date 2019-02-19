@@ -40,10 +40,8 @@
 #include "IO_Map.h"
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
+#include "Oscilloscope.h"
 
-int CH_Analog[2];
-volatile char is_CH_Full;
-volatile char *BufferSerialCount;
 
 void main(void)
 {
@@ -59,7 +57,8 @@ void main(void)
   
   for(;;){
 	if((AS1_GetCharsInTxBuf() == 0) && (is_CH_Full == 1)){
-		AS1_SendBlock(&CH_Analog, 4, &BufferSerialCount);
+		Pack(CH_Analog, 1, DATA_ANALOG);
+		AS1_SendBlock(CH_Analog, OSC_FRAME_SIZE, &BufferSerialCount);
 		is_CH_Full = 0;
 	}
   }

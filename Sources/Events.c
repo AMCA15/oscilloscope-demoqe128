@@ -32,9 +32,7 @@
 #include "Events.h"
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
-extern int CH_Analog[2];
-extern volatile char is_CH_Full;
-extern volatile char *BufferSerialCount;
+#include "Oscilloscope.h"
 
 
 /*
@@ -54,10 +52,7 @@ extern volatile char *BufferSerialCount;
 void AD1_OnEnd(void)
 {
   /* Write your code here ... */
-	int Values[2];
-	AD1_GetValue(Values);
-	CH_Analog[AD1_CHANNEL_CHA] = Values[0];
-	CH_Analog[AD1_CHANNEL_CHB] = Values[1];
+	AD1_GetValue(CH_Analog);
 	is_CH_Full = 1;
 }
 
