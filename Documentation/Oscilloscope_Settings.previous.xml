@@ -1014,7 +1014,7 @@ asm(BGND);
         <Interrupt v="Vtpm1ch0" />
         <Interrupt_priority v="medium priority" />
       </boolgroup>
-      <Interrupt_period v="1000 ms" />
+      <Interrupt_period v="500 &amp;#181;s" />
       <Same_period_in_modes v="yes" />
       <Component_uses_entire_timer v="no" />
       <group name="Initialization">

@@ -7,7 +7,7 @@
 **     Version     : Component 01.003, Driver 01.40, CPU db: 3.00.067
 **     Datasheet   : MC9S08QE128RM Rev. 2 6/2007
 **     Compiler    : CodeWarrior HCS08 C Compiler
-**     Date/Time   : 2019-02-18, 15:56, # CodeGen: 49
+**     Date/Time   : 2019-02-22, 15:47, # CodeGen: 56
 **     Abstract    :
 **         This component "MC9S08QE128_80" contains initialization 
 **         of the CPU and provides basic methods and events for 
@@ -70,6 +70,7 @@
 #include "AD1.h"
 #include "AS1.h"
 #include "TI1.h"
+#include "Bits1.h"
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
@@ -271,6 +272,10 @@ void PE_low_level_init(void)
   clrSetReg8Bits(PTBDD, 0x01U, 0x02U);  
   /* PTBD: PTBD1=1 */
   setReg8Bits(PTBD, 0x02U);             
+  /* PTAPE: PTAPE3=1,PTAPE2=1 */
+  setReg8Bits(PTAPE, 0x0CU);            
+  /* PTADD: PTADD3=0,PTADD2=0 */
+  clrReg8Bits(PTADD, 0x0CU);            
   /* PTASE: PTASE7=0,PTASE6=0,PTASE4=0,PTASE3=0,PTASE2=0,PTASE1=0,PTASE0=0 */
   clrReg8Bits(PTASE, 0xDFU);            
   /* PTBSE: PTBSE7=0,PTBSE6=0,PTBSE5=0,PTBSE4=0,PTBSE3=0,PTBSE2=0,PTBSE1=0,PTBSE0=0 */
@@ -314,6 +319,7 @@ void PE_low_level_init(void)
   AS1_Init();
   /* ### TimerInt "TI1" init code ... */
   TI1_Init();
+  /* ### BitsIO "Bits1" init code ... */
   CCR_lock = (byte)0;
   __EI();                              /* Enable interrupts */
 }

@@ -52,7 +52,9 @@
 void AD1_OnEnd(void)
 {
   /* Write your code here ... */
-	AD1_GetValue(CH_Analog);
+	AD1_GetValue(Channels);
+	Channels[0].Data_Dig = Bits1_GetBit(CHA);
+	Channels[1].Data_Dig = Bits1_GetBit(CHB);
 	is_CH_Full = 1;
 }
 

@@ -37,6 +37,7 @@
 #include "AD1.h"
 #include "AS1.h"
 #include "TI1.h"
+#include "Bits1.h"
 
 
 void AD1_OnEnd(void);

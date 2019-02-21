@@ -31,6 +31,15 @@ Module "AS1"       (component AsynchroSerial)
 
 Module "TI1"       (component TimerInt)
 
+Module "Bits1"     (component BitsIO)
+   - Bits1_GetDir -Return selected direction.
+   - Bits1_GetVal -Returns the value of the Input/Output component. If the direction is [input] then reads the input value of 
+                the pins and returns it. If the direction is [output] then returns the last written value (see <Safe mode> 
+                property for limitations).
+   - Bits1_GetBit -Returns the value of the specified bit/pin of the Input/Output component. If the direction is [input] then 
+                it reads the input value of the pin and returns it. If the direction is [output] then it returns the last 
+                written value (see <Safe mode> property for limitations).
+
 Module "Cpu"       (component MC9S08QE128_80)
    - Cpu_EnableInt -Enables maskable interrupts
    - Cpu_DisableInt -Disables maskable interrupts

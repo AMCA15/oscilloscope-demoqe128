@@ -33,6 +33,7 @@
 #include "AD1.h"
 #include "AS1.h"
 #include "TI1.h"
+#include "Bits1.h"
 /* Include shared modules, which are used for whole project */
 #include "PE_Types.h"
 #include "PE_Error.h"
@@ -55,10 +56,11 @@ void main(void)
   /* For example: for(;;) { } */
   Cpu_EnableInt();
   
+  
   for(;;){
 	if((AS1_GetCharsInTxBuf() == 0) && (is_CH_Full == 1)){
-		Pack(CH_Analog, 1, DATA_ANALOG);
-		AS1_SendBlock(CH_Analog, OSC_FRAME_SIZE, &BufferSerialCount);
+		Pack(&Osc_Frame, Channels);
+		AS1_SendBlock(&Osc_Frame, OSC_FRAME_SIZE, &BufferSerialCount);
 		is_CH_Full = 0;
 	}
   }
