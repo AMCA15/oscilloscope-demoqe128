@@ -1,4 +1,3 @@
-
 data = fread(s,512,'int8');
 databyte = int8(data);
 
