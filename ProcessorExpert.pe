@@ -2,9 +2,9 @@
 <PEproject>
   <Header>
     <Name>Oscilloscope</Name>
-    <SavedBy>user</SavedBy>
+    <SavedBy>Anderson</SavedBy>
     <ModificationStamp>67</ModificationStamp>
-    <Date>2019-02-18</Date>
+    <Date>2019-02-27</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.9.0.RT6_b1411-0406</PEversion>
   </Header>
@@ -8212,7 +8212,7 @@
         <ReadOnly>false</ReadOnly>
         <ListItemCount>2</ListItemCount>
         <UserReadOnly>false</UserReadOnly>
-        <Expanded>false</Expanded>
+        <Expanded>true</Expanded>
       </ItemState>
       <ItemState>
         <ItemSymbol>ADgrp0</ItemSymbol>
