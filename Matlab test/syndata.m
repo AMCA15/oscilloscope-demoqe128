@@ -1,11 +1,16 @@
-data = fread(s,512,'int8');
+buffer = 4096;
+
+data = fread(s,buffer,'int8');
 databyte = int8(data);
 
+% Sync the data
 start = find(databyte > 0, 1);
-syncData = databyte(start:end-start+1);
+syncData = databyte(start:end-mod((buffer-start),4)-1);
 
+% Convert to unsigned
 syncData = typecast(syncData, 'uint8');
 
+% Resulting data block size
 blocksize = length(syncData);
 
 byte0 = syncData(1:4:end);
@@ -30,3 +35,4 @@ cha_a = uint16(cha_a_h)*64 + uint16(cha_a_l);
 chb_a = uint16(chb_a_h)*64 + uint16(chb_a_l);
 
 plot(t, cha_a, t, chb_a);
+axis([0 1024 0 4096])
