@@ -846,7 +846,7 @@ asm(BGND);
         </group>
       </list>
       <A_D_resolution v="12 bits" />
-      <Conversion_time v="11.5 &amp;#181;s" />
+      <Conversion_time v="46 &amp;#181;s" />
       <Low_power_mode v="Disabled" />
       <Sample_time v="short" />
       <boolgroup name="Internal trigger" v="Disabled" />
@@ -1014,7 +1014,7 @@ asm(BGND);
         <Interrupt v="Vtpm1ch0" />
         <Interrupt_priority v="medium priority" />
       </boolgroup>
-      <Interrupt_period v="500 &amp;#181;s" />
+      <Interrupt_period v="0.5 ms" />
       <Same_period_in_modes v="yes" />
       <Component_uses_entire_timer v="no" />
       <group name="Initialization">
@@ -1051,6 +1051,55 @@ asm(BGND);
         <Event_procedure_name v="TI1_OnInterrupt" />
         <Priority v="same as interrupt" />
       </event>
+    </Events>
+  </Bean>
+  <Bean name="Bits1" type="BitsIO">
+    <Enabled v="Y" />
+    <Properties>
+      <Component_name v="Bits1" />
+      <Port v="PTA" />
+      <list name="Pins" v="2">
+        <group name="Pin0">
+          <Pin v="PTA2_KBI1P2_SDA1_ADP2" />
+          <Slew_rate_control_for_PTA2 v="no" />
+          <Drive_strength_for_PTA2 v="High" />
+        </group>
+        <group name="Pin1">
+          <Pin v="PTA3_KBI1P3_SCL1_ADP3" />
+          <Slew_rate_control_for_PTA3 v="no" />
+          <Drive_strength_for_PTA3 v="High" />
+        </group>
+      </list>
+      <Pull_resistor v="pull up" />
+      <Open_drain sel_value="The settings is irrelevant for input direction">
+        
+push-pull
+
+        <EmptySection_DummyValue />
+      </Open_drain>
+      <Direction v="Input" />
+      <group name="Initialization">
+        <Init__direction v="Input" />
+        <Init__value v="0" />
+      </group>
+      <Safe_mode v="yes" />
+      <Optimization_for v="speed" />
+    </Properties>
+    <Methods>
+      <GetDir v="generate code" />
+      <SetDir v="don&amp;apos;t generate code" />
+      <SetInput v="don&amp;apos;t generate code" />
+      <SetOutput v="don&amp;apos;t generate code" />
+      <GetVal v="generate code" />
+      <PutVal v="don&amp;apos;t generate code" />
+      <GetBit v="generate code" />
+      <PutBit v="don&amp;apos;t generate code" />
+      <SetBit v="don&amp;apos;t generate code" />
+      <ClrBit v="don&amp;apos;t generate code" />
+      <NegBit v="don&amp;apos;t generate code" />
+    </Methods>
+    <Events>
+      <EmptySection_DummyValue />
     </Events>
   </Bean>
 </PE_PROJECT_SETTINGS_DOCUMENTATION>

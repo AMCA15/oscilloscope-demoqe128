@@ -6,7 +6,7 @@
 **     Component   : ADC
 **     Version     : Component 01.690, Driver 01.30, CPU db: 3.00.067
 **     Compiler    : CodeWarrior HCS08 C Compiler
-**     Date/Time   : 2019-02-18, 15:40, # CodeGen: 48
+**     Date/Time   : 2019-03-01, 13:58, # CodeGen: 60
 **     Abstract    :
 **         This device "ADC" implements an A/D converter,
 **         its control methods and interrupt/event handling procedure.
@@ -25,7 +25,7 @@
 **              A/D channel (pin)                          : TempSensor
 **              A/D channel (pin) signal                   : CHB
 **          A/D resolution                                 : 12 bits
-**          Conversion time                                : 11.5 µs
+**          Conversion time                                : 46 µs
 **          Low-power mode                                 : Disabled
 **          Sample time                                    : short
 **          Internal trigger                               : Disabled

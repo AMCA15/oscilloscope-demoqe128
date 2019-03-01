@@ -846,7 +846,7 @@ asm(BGND);
         </group>
       </list>
       <A_D_resolution v="12 bits" />
-      <Conversion_time v="11.5 &amp;#181;s" />
+      <Conversion_time v="46 &amp;#181;s" />
       <Low_power_mode v="Disabled" />
       <Sample_time v="short" />
       <boolgroup name="Internal trigger" v="Disabled" />

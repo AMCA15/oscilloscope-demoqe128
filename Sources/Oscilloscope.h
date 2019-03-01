@@ -21,8 +21,8 @@ extern volatile char *BufferSerialCount;
 
 
 struct Data{
-	word Data_Ana_L : 6;
 	word Data_Ana_H : 6;
+	word Data_Ana_L : 6;
 	word Data_Dig   : 1;
 };
 extern struct Data Channels[2];
