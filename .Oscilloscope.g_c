@@ -1,7 +1,7 @@
 <GenerationInfo_G_C>
   <Options>
     <ProjectName>Oscilloscope</ProjectName>
-    <ProjectDirectory>C:\Users\user.LC\Desktop\tmp\oscilloscope-demoqe128\</ProjectDirectory>
+    <ProjectDirectory>C:\msys64\home\Anderson\workspace\Oscilloscope\</ProjectDirectory>
     <ProjectMainModuleName>main</ProjectMainModuleName>
     <DestEventsDirectory>Sources\</DestEventsDirectory>
     <DestDriversSubDirectory>..\Generated_Code\</DestDriversSubDirectory>
@@ -18,23 +18,23 @@
         <Line>PE_Const</Line>
         <Line>IO_Map</Line>
       </GenSharedModules>
-      <ShrdHeaderAge0>1314024892</ShrdHeaderAge0>
+      <ShrdHeaderAge0>1313381257</ShrdHeaderAge0>
       <ShrdCodeAge0>-1</ShrdCodeAge0>
       <ShrdAsemblAge0>-1</ShrdAsemblAge0>
-      <ShrdHeaderAge1>1314024892</ShrdHeaderAge1>
+      <ShrdHeaderAge1>1313381257</ShrdHeaderAge1>
       <ShrdCodeAge1>-1</ShrdCodeAge1>
       <ShrdAsemblAge1>-1</ShrdAsemblAge1>
-      <ShrdHeaderAge2>1314024892</ShrdHeaderAge2>
+      <ShrdHeaderAge2>1313381257</ShrdHeaderAge2>
       <ShrdCodeAge2>-1</ShrdCodeAge2>
       <ShrdAsemblAge2>-1</ShrdAsemblAge2>
-      <ShrdHeaderAge3>1314024892</ShrdHeaderAge3>
-      <ShrdCodeAge3>1314024892</ShrdCodeAge3>
+      <ShrdHeaderAge3>1313381257</ShrdHeaderAge3>
+      <ShrdCodeAge3>1313381257</ShrdCodeAge3>
       <ShrdAsemblAge3>-1</ShrdAsemblAge3>
       <GenExtraFiles lines_count="2">
         <Line>Project_Settings\Linker_Files\ProcessorExpert.prm</Line>
         <Line>Generated_Code\Vectors.c</Line>
       </GenExtraFiles>
-      <XtraAge1>1315005536</XtraAge1>
+      <XtraAge1>1315020155</XtraAge1>
       <GenExtraFileType1>4</GenExtraFileType1>
       <GenLinkedFiles lines_count="0" />
       <GenEventModules lines_count="1">
@@ -70,7 +70,7 @@
     </GenFiles>
     <SignalListFile>Documentation\Oscilloscope_SIGNALS.txt</SignalListFile>
     <DestinationCompiler>MetrowerksHCS08CC</DestinationCompiler>
-    <ProjectModificationStamp>74</ProjectModificationStamp>
+    <ProjectModificationStamp>77</ProjectModificationStamp>
   </Options>
   <CpuID_2>
     <Generated>false</Generated>
@@ -126,8 +126,8 @@
     <GenComponentVersion>01.003</GenComponentVersion>
     <GenDriverVersion>01.40</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
-    <HeaderAge>1314157107</HeaderAge>
-    <CodeAge>1315005536</CodeAge>
+    <HeaderAge>1314102184</HeaderAge>
+    <CodeAge>1315205130</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>20</GenNumMethods>
     <SetHighSpeed>false</SetHighSpeed>
@@ -179,8 +179,8 @@
     <GenComponentVersion>01.690</GenComponentVersion>
     <GenDriverVersion>01.30</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
-    <HeaderAge>1315008339</HeaderAge>
-    <CodeAge>1315008339</CodeAge>
+    <HeaderAge>1315205130</HeaderAge>
+    <CodeAge>1315205130</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>19</GenNumMethods>
     <Enable>false</Enable>
@@ -308,8 +308,8 @@
     <GenComponentVersion>02.611</GenComponentVersion>
     <GenDriverVersion>01.33</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
-    <HeaderAge>1314157107</HeaderAge>
-    <CodeAge>1314157107</CodeAge>
+    <HeaderAge>1314102184</HeaderAge>
+    <CodeAge>1314102184</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>30</GenNumMethods>
     <Enable>false</Enable>
@@ -538,8 +538,8 @@
     <GenComponentVersion>02.161</GenComponentVersion>
     <GenDriverVersion>01.23</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
-    <HeaderAge>1315009113</HeaderAge>
-    <CodeAge>1315009114</CodeAge>
+    <HeaderAge>1315020155</HeaderAge>
+    <CodeAge>1315020155</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>14</GenNumMethods>
     <Enable>false</Enable>
@@ -613,8 +613,8 @@
     <GenComponentVersion>02.108</GenComponentVersion>
     <GenDriverVersion>03.28</GenDriverVersion>
     <GenEventModule />
-    <HeaderAge>1315005536</HeaderAge>
-    <CodeAge>1315005536</CodeAge>
+    <HeaderAge>1315020155</HeaderAge>
+    <CodeAge>1315020155</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>11</GenNumMethods>
     <GetDir>true</GetDir>
@@ -775,7 +775,7 @@
     <SrcFile87>Drivers\Common\UsedPins.inc=1116866294</SrcFile87>
     <SrcFile88>Drivers\Common\CommonRegInit.prg=1116866294</SrcFile88>
     <SrcFile89>Drivers\Common\AsynchroSerialClearTxBuf.inc=1116866294</SrcFile89>
-    <SrcFile90>Drivers\Common\Header.doxy=1119170811</SrcFile90>
+    <SrcFile90>Drivers\Common\Header.doxy=1119169723</SrcFile90>
     <SrcFile91>Drivers\HCS08\TimerSubroutines_PeriodicInt.prg=1116866294</SrcFile91>
     <SrcFile92>Drivers\Common\PE_TypesAbstract.inc=1116866294</SrcFile92>
     <SrcFile93>Drivers\Common\AsynchroSerialOnError.inc=1116866294</SrcFile93>

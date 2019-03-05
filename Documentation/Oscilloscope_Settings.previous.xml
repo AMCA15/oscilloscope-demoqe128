@@ -842,7 +842,7 @@ asm(BGND);
           <A_D_channel__pin_ v="PTA0_KBI1P0_TPM1CH0_ADP0_ACMP1PLUS" />
         </group>
         <group name="Channel1">
-          <A_D_channel__pin_ v="TempSensor" />
+          <A_D_channel__pin_ v="PTA1_KBI1P1_TPM2CH0_ADP1_ACMP1MINUS" />
         </group>
       </list>
       <A_D_resolution v="12 bits" />
@@ -1014,7 +1014,7 @@ asm(BGND);
         <Interrupt v="Vtpm1ch0" />
         <Interrupt_priority v="medium priority" />
       </boolgroup>
-      <Interrupt_period v="0.5 ms" />
+      <Interrupt_period v="500 &amp;#181;s" />
       <Same_period_in_modes v="yes" />
       <Component_uses_entire_timer v="no" />
       <group name="Initialization">
