@@ -10,30 +10,32 @@
   </ToolchainSettings>
   <GeneratedFilesList>
     <GeneratedByPE>
-      <File Name="Generated_Code/AD1.c" FileDate="2019-03-04, 14:00:21" FileAge="1551724221008" FileType="45637" CompNumb="8" />
-      <File Name="Sources/Events.h" FileDate="2019-03-01, 19:43:55" FileAge="1551485635428" FileType="131328" />
-      <File Name="Generated_Code/AS1.h" FileDate="2019-02-19, 19:29:17" FileAge="1550620757940" FileType="45637" CompNumb="10" />
-      <File Name="Generated_Code/IO_Map.h" FileDate="2019-02-08, 19:28:18" FileAge="1549670298393" FileType="45637" />
-      <File Name="Sources/Events.c" FileDate="2019-03-01, 19:43:55" FileAge="1551485635397" FileType="131328" />
-      <File Name="Generated_Code/PE_Const.h" FileDate="2019-02-08, 19:28:18" FileAge="1549670298428" FileType="45637" />
-      <File Name="Generated_Code/AS1.c" FileDate="2019-02-19, 19:29:17" FileAge="1550620757924" FileType="45637" CompNumb="10" />
-      <File Name="Generated_Code/IO_Map.c" FileDate="2019-02-08, 19:28:18" FileAge="1549670298384" FileType="45637" />
-      <File Name="Sources/main.c" FileDate="2019-03-01, 19:43:55" FileAge="1551485635491" FileType="128" />
-      <File Name="Documentation/Oscilloscope_Settings.xml" FileDate="2019-03-04, 14:00:21" FileAge="1551724221130" FileType="3072" />
-      <File Name="Generated_Code/TI1.h" FileDate="2019-03-01, 19:43:55" FileAge="1551485635131" FileType="45637" CompNumb="39" />
-      <File Name="Generated_Code/PE_Types.h" FileDate="2019-02-08, 19:28:18" FileAge="1549670298444" FileType="45637" />
-      <File Name="Generated_Code/TI1.c" FileDate="2019-03-01, 19:43:55" FileAge="1551485635116" FileType="45637" CompNumb="39" />
-      <File Name="Documentation/Oscilloscope.txt" FileDate="2019-03-01, 19:43:54" FileAge="1551485634803" FileType="3072" />
-      <File Name="Generated_Code/Bits1.h" FileDate="2019-03-01, 19:43:55" FileAge="1551485635053" FileType="45637" CompNumb="49" />
-      <File Name="Generated_Code/Cpu.h" FileDate="2019-02-19, 19:29:17" FileAge="1550620757971" FileType="45637" CompNumb="4" />
-      <File Name="Generated_Code/Bits1.c" FileDate="2019-03-01, 19:43:55" FileAge="1551485635037" FileType="45637" CompNumb="49" />
-      <File Name="Generated_Code/Cpu.c" FileDate="2019-03-04, 14:00:21" FileAge="1551724221017" FileType="45637" CompNumb="4" />
-      <File Name="Documentation/Oscilloscope_SIGNALS.txt" FileDate="2019-03-04, 14:00:21" FileAge="1551724221083" FileType="3072" />
-      <File Name="Generated_Code/Vectors.c" FileDate="2019-03-01, 19:43:55" FileAge="1551485635162" FileType="45637" CompNumb="4" />
-      <File Name="Generated_Code/PE_Error.h" FileDate="2019-02-08, 19:28:18" FileAge="1549670298434" FileType="45637" />
-      <File Name="Generated_Code/AD1.h" FileDate="2019-03-04, 14:00:20" FileAge="1551724220999" FileType="45637" CompNumb="8" />
-      <File Name="Project_Settings/Linker_Files/ProcessorExpert.prm" FileDate="2019-02-08, 19:28:18" FileAge="1549670298360" FileType="8" CompNumb="4" />
+      <File Name="Generated_Code/AD1.h" FileDate="2019-03-06, 14:48:35" FileAge="1551898115185" FileType="45637" CompNumb="8" />
+      <File Name="Sources/main.c" FileDate="2019-03-06, 15:37:51" FileAge="1551901071376" FileType="128" />
+      <File Name="Generated_Code/IO_Map.c" FileDate="2019-03-06, 14:45:44" FileAge="1551897944654" FileType="45637" />
+      <File Name="Generated_Code/PE_Error.h" FileDate="2019-03-06, 14:45:44" FileAge="1551897944660" FileType="45637" />
+      <File Name="Documentation/Oscilloscope.txt" FileDate="2019-03-06, 15:37:51" FileAge="1551901071461" FileType="3072" />
+      <File Name="Generated_Code/AD1.c" FileDate="2019-03-06, 14:48:35" FileAge="1551898115193" FileType="45637" CompNumb="8" />
+      <File Name="Documentation/Oscilloscope_Settings.xml" FileDate="2019-03-06, 15:37:51" FileAge="1551901071447" FileType="3072" />
+      <File Name="Generated_Code/AS1.h" FileDate="2019-03-06, 14:45:44" FileAge="1551897944607" FileType="45637" CompNumb="10" />
+      <File Name="Generated_Code/Bits1.h" FileDate="2019-03-06, 14:48:35" FileAge="1551898115171" FileType="45637" CompNumb="49" />
+      <File Name="Generated_Code/Vectors.c" FileDate="2019-03-06, 15:37:51" FileAge="1551901071390" FileType="45637" CompNumb="4" />
+      <File Name="Generated_Code/Bits1.c" FileDate="2019-03-06, 14:48:35" FileAge="1551898115198" FileType="45637" CompNumb="49" />
+      <File Name="Generated_Code/AS1.c" FileDate="2019-03-06, 14:45:44" FileAge="1551897944606" FileType="45637" CompNumb="10" />
+      <File Name="Project_Settings/Linker_Files/ProcessorExpert.prm" FileDate="2019-02-18, 13:45:57" FileAge="1550511957903" FileType="8" CompNumb="4" />
+      <File Name="Generated_Code/TI1.h" FileDate="2019-03-06, 14:45:44" FileAge="1551897944664" FileType="45637" CompNumb="39" />
+      <File Name="Generated_Code/Bit1.h" FileDate="2019-03-06, 15:37:51" FileAge="1551901071360" FileType="45637" CompNumb="59" />
+      <File Name="Generated_Code/PE_Const.h" FileDate="2019-03-06, 14:45:44" FileAge="1551897944659" FileType="45637" />
+      <File Name="Generated_Code/TI1.c" FileDate="2019-03-06, 14:45:44" FileAge="1551897944663" FileType="45637" CompNumb="39" />
+      <File Name="Generated_Code/Bit1.c" FileDate="2019-03-06, 15:37:51" FileAge="1551901071358" FileType="45637" CompNumb="59" />
+      <File Name="Sources/Events.h" FileDate="2019-03-06, 15:37:51" FileAge="1551901071396" FileType="131328" />
+      <File Name="Generated_Code/Cpu.h" FileDate="2019-03-06, 14:45:44" FileAge="1551897944612" FileType="45637" CompNumb="4" />
+      <File Name="Sources/Events.c" FileDate="2019-03-06, 15:37:47" FileAge="1551901067609" FileType="131328" />
+      <File Name="Generated_Code/Cpu.c" FileDate="2019-03-06, 15:37:51" FileAge="1551901071383" FileType="45637" CompNumb="4" />
+      <File Name="Generated_Code/PE_Types.h" FileDate="2019-03-06, 14:45:44" FileAge="1551897944661" FileType="45637" />
+      <File Name="Generated_Code/IO_Map.h" FileDate="2019-03-06, 14:45:44" FileAge="1551897944657" FileType="45637" />
+      <File Name="Documentation/Oscilloscope_SIGNALS.txt" FileDate="2019-03-06, 15:37:51" FileAge="1551901071410" FileType="3072" />
     </GeneratedByPE>
   </GeneratedFilesList>
-  <CodeGenReference>66</CodeGenReference>
+  <CodeGenReference>68</CodeGenReference>
 </CodeGenerationInfo>

@@ -2,7 +2,7 @@
  * Oscilloscope.c
  *
  *  Created on: Feb 18, 2019
- *      Author: Anderson Contreras
+ *  Author: Anderson Contreras
  */
 
 #include "Oscilloscope.h"

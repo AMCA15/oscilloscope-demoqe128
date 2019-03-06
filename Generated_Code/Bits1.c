@@ -6,15 +6,15 @@
 **     Component   : BitsIO
 **     Version     : Component 02.108, Driver 03.28, CPU db: 3.00.067
 **     Compiler    : CodeWarrior HCS08 C Compiler
-**     Date/Time   : 2019-02-22, 15:47, # CodeGen: 56
+**     Date/Time   : 2019-03-06, 14:48, # CodeGen: 66
 **     Abstract    :
 **         This component "BitsIO" implements a multi-bit input/output.
 **         It uses selected pins of one 1-bit to 8-bit port.
 **         Note: This component is set to work in Input direction only.
 **     Settings    :
-**         Port name                   : PTA
+**         Port name                   : PTC
 **
-**         Bit mask of the port        : $000C
+**         Bit mask of the port        : $0006
 **         Number of bits/pins         : 2
 **         Single bit numbers          : 0 to 1
 **         Values range                : 0 to 3
@@ -23,14 +23,14 @@
 **         Initial output value        : 0 = 000H
 **         Initial pull option         : up
 **
-**         Port data register          : PTAD      [$0000]
-**         Port control register       : PTADD     [$0001]
+**         Port data register          : PTCD      [$0004]
+**         Port control register       : PTCDD     [$0005]
 **
 **             ----------------------------------------------------
 **                   Bit     |   Pin   |   Name
 **             ----------------------------------------------------
-**                    0      |    60   |   PTA2_KBI1P2_SDA1_ADP2
-**                    1      |    59   |   PTA3_KBI1P3_SCL1_ADP3
+**                    0      |    33   |   PTC1_TPM3CH1
+**                    1      |    25   |   PTC2_TPM3CH2
 **             ----------------------------------------------------
 **
 **         Optimization for            : speed
@@ -105,7 +105,7 @@
 ** ===================================================================
 */
 static const  byte Bits1_Table[2U] = { /* Table of mask constants */
-   0x04U, 0x08U
+   0x02U, 0x04U
 };
 
 static byte Bits1_GetMsk (byte PinIndex)
@@ -129,7 +129,7 @@ static byte Bits1_GetMsk (byte PinIndex)
 */
 byte Bits1_GetVal(void)
 {
-  return (byte)((getReg8(PTAD) & 0x0CU) >> 2U); /* Return port data */
+  return (byte)((getReg8(PTCD) & 0x06U) >> 1U); /* Return port data */
 }
 
 /*
@@ -153,7 +153,7 @@ byte Bits1_GetVal(void)
 bool Bits1_GetBit(byte Bit)
 {
   byte const Mask = Bits1_GetMsk(Bit); /* Temporary variable - bit mask to test */
-  return (bool)(((getReg8(PTAD) & Mask) == Mask)? 1U: 0U); /* Test if specified bit of port register is set */
+  return (bool)(((getReg8(PTCD) & Mask) == Mask)? 1U: 0U); /* Test if specified bit of port register is set */
 }
 
 /*

@@ -34,6 +34,7 @@
 #include "AS1.h"
 #include "TI1.h"
 #include "Bits1.h"
+#include "Bit1.h"
 /* Include shared modules, which are used for whole project */
 #include "PE_Types.h"
 #include "PE_Error.h"
@@ -52,16 +53,16 @@ void main(void)
   PE_low_level_init();
   /*** End of Processor Expert internal initialization.                    ***/
 
-  /* Write your code here */
-  /* For example: for(;;) { } */
+  
   Cpu_EnableInt();
   
   
   for(;;){
+	  // Send the data if the tx buffer is empty and the channels data is ready
 	if((AS1_GetCharsInTxBuf() == 0) && (is_CH_Full == 1)){
-		Pack(&Osc_Frame, Channels);
-		AS1_SendBlock(&Osc_Frame, OSC_FRAME_SIZE, &BufferSerialCount);
-		is_CH_Full = 0;
+		Pack(&Osc_Frame, Channels);										// Pack the data
+		AS1_SendBlock(&Osc_Frame, OSC_FRAME_SIZE, &BufferSerialCount);	// Send the data
+		is_CH_Full = 0;			// Buffer data is empty
 	}
   }
   

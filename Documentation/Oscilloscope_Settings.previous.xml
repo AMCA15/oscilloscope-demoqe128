@@ -1057,17 +1057,17 @@ asm(BGND);
     <Enabled v="Y" />
     <Properties>
       <Component_name v="Bits1" />
-      <Port v="PTA" />
+      <Port v="PTC" />
       <list name="Pins" v="2">
         <group name="Pin0">
-          <Pin v="PTA2_KBI1P2_SDA1_ADP2" />
-          <Slew_rate_control_for_PTA2 v="no" />
-          <Drive_strength_for_PTA2 v="High" />
+          <Pin v="PTC1_TPM3CH1" />
+          <Slew_rate_control_for_PTC1 v="no" />
+          <Drive_strength_for_PTC1 v="High" />
         </group>
         <group name="Pin1">
-          <Pin v="PTA3_KBI1P3_SCL1_ADP3" />
-          <Slew_rate_control_for_PTA3 v="no" />
-          <Drive_strength_for_PTA3 v="High" />
+          <Pin v="PTC2_TPM3CH2" />
+          <Slew_rate_control_for_PTC2 v="no" />
+          <Drive_strength_for_PTC2 v="High" />
         </group>
       </list>
       <Pull_resistor v="pull up" />

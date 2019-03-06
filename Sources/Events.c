@@ -51,11 +51,12 @@
 */
 void AD1_OnEnd(void)
 {
-  /* Write your code here ... */
+	// Get ADC and Digital values
 	AD1_GetValue(Channels);
 	Channels[0].Data_Dig = Bits1_GetBit(CHA);
 	Channels[1].Data_Dig = Bits1_GetBit(CHB);
-	is_CH_Full = 1;
+	is_CH_Full = 1;			// Flag for data ready
+	Bit1_NegVal();			// For checking sample frequency
 }
 
 
@@ -148,9 +149,8 @@ void  AS1_OnFreeTxBuf(void)
 */
 void TI1_OnInterrupt(void)
 {
-  /* Write your code here ... */
+	// Start the conversion
 	AD1_Measure(0);
-
 }
 
 /* END Events */

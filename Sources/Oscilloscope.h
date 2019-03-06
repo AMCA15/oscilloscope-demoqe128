@@ -2,7 +2,7 @@
  * Oscilloscope.h
  *
  *  Created on: Feb 18, 2019
- *      Author: Anderson Contreras
+ *  Author: Anderson Contreras
  */
 
 #ifndef OSCILLOSCOPE_H_
@@ -19,7 +19,7 @@
 extern volatile char is_CH_Full;
 extern volatile char *BufferSerialCount;
 
-
+// Data struct for channels (Digitals & Analogs)
 struct Data{
 	word Data_Ana_H : 6;
 	word Data_Ana_L : 6;
@@ -27,6 +27,7 @@ struct Data{
 };
 extern struct Data Channels[2];
 
+// Data frame struct
 struct Frame{
 	byte DCHA_Ana_Low  : 6;
 	byte DCHA_Dig_Low  : 1;
@@ -43,7 +44,7 @@ struct Frame{
 };
 extern struct Frame Osc_Frame;
 
-// Functions
+// Function for packing the data
 void Pack(struct Frame *frame, struct Data *channels);
 
 

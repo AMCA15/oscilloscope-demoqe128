@@ -6,7 +6,7 @@
 **     Component   : ADC
 **     Version     : Component 01.690, Driver 01.30, CPU db: 3.00.067
 **     Compiler    : CodeWarrior HCS08 C Compiler
-**     Date/Time   : 2019-03-04, 14:00, # CodeGen: 65
+**     Date/Time   : 2019-03-06, 14:48, # CodeGen: 66
 **     Abstract    :
 **         This device "ADC" implements an A/D converter,
 **         its control methods and interrupt/event handling procedure.
@@ -22,7 +22,7 @@
 **              A/D channel (pin)                          : PTA0_KBI1P0_TPM1CH0_ADP0_ACMP1PLUS
 **              A/D channel (pin) signal                   : CHA
 **            Channel1                                     : 
-**              A/D channel (pin)                          : TempSensor
+**              A/D channel (pin)                          : PTA1_KBI1P1_TPM2CH0_ADP1_ACMP1MINUS
 **              A/D channel (pin) signal                   : CHB
 **          A/D resolution                                 : 12 bits
 **          Conversion time                                : 46 µs
@@ -113,7 +113,7 @@ static void ClrSumV(void);
 #define SINGLE          0x03U          /* SINGLE state         */
 
 
-static const  byte Channels[2] = {0x40U,0x5AU};  /* Contents for the device control register */
+static const  byte Channels[2] = {0x40U,0x41U};  /* Contents for the device control register */
 
 static volatile bool OutFlg;           /* Measurement finish flag */
 static volatile byte SumChan;          /* Number of measured channels */
